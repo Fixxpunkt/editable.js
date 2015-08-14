@@ -13,6 +13,7 @@ module.exports = {
   pastingAttribute: 'data-editable-is-pasting',
   boldTag: 'strong',
   italicTag: 'em',
+  strikethroughTag: '<strike>',
 
   // Rules that are applied when filtering pasted content
   pastedHtmlRules: {
