@@ -170,7 +170,15 @@ module.exports = function(grunt) {
           'version.json': ['version.json']
         }
       }
+    },
+
+    copy: {
+      main: {
+        src: 'editable.js',
+        dest: '../livingdocs-engine/vendor/editableJS/editable.js'
+      }
     }
+
   });
 
   grunt.registerTask('test', [
@@ -205,7 +213,8 @@ module.exports = function(grunt) {
     'clean:server',
     'browserify:src',
     'concat:dist',
-    'uglify'
+    'uglify',
+    'copy'
   ]);
 
   grunt.registerTask('add-revision', ['revision', 'replace:revision']);

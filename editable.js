@@ -3749,6 +3749,7 @@ module.exports = {
   pastingAttribute: 'data-editable-is-pasting',
   boldTag: 'strong',
   italicTag: 'em',
+  strikethroughTag: '<strike>',
 
   // Rules that are applied when filtering pasted content
   pastedHtmlRules: {
@@ -6905,6 +6906,20 @@ module.exports = (function() {
     toggleEmphasis: function() {
       var em = this.createElement(config.italicTag);
       this.toggle(em);
+    },
+
+    /**
+     *
+     * @method makeBold
+     */
+    makeStrikethrough: function() {
+      var $bold = $(config.strikethroughTag);
+      this.forceWrap($bold[0]);
+    },
+
+    toggleStrikethrough: function() {
+      var $bold = $(config.strikethroughTag);
+      this.toggle($bold[0]);
     },
 
     /**
