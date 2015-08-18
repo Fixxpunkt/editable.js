@@ -21,7 +21,9 @@ module.exports = {
     // Elements and their attributes to keep in pasted text
     allowedElements: {
       'a': {
-        'href': true
+        'href': true,
+        'target': '_blank',
+        'rel': 'nofollow'
       },
       'strong': {},
       'em': {},
