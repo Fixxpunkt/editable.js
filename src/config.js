@@ -25,6 +25,7 @@ module.exports = {
       },
       'strong': {},
       'em': {},
+      'strike': {},
       'br': {}
     },
 
@@ -39,7 +40,8 @@ module.exports = {
     // Elements that should be transformed into other elements
     transformElements: {
       'b': 'strong',
-      'i': 'em'
+      'i': 'em',
+      's': 'strike'
     },
 
     // A list of elements which should be split into paragraphs.
