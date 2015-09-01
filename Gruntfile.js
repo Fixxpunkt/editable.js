@@ -129,7 +129,7 @@ module.exports = function(grunt) {
         files: {
           'editable.min.js': [
             'editable.js'
-          ],
+          ]
         }
       }
     },
@@ -175,7 +175,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         src: 'editable.js',
-        dest: '../livingdocs-engine/vendor/editableJS/editable.js'
+        dest: '../Fixxpunkt/app/Plugin/Cms/webroot/editor/vendor/livingdocs-engine/vendor/editableJS/'
       }
     }
 
