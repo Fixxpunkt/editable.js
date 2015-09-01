@@ -6917,13 +6917,13 @@ module.exports = (function() {
      * @method makeBold
      */
     makeStrikethrough: function() {
-      var $bold = $(config.strikethroughTag);
-      this.forceWrap($bold[0]);
+      var strikethrough = $(config.strikethroughTag);
+      this.forceWrap(strikethrough[0]);
     },
 
     toggleStrikethrough: function() {
-      var $bold = $(config.strikethroughTag);
-      this.toggle($bold[0]);
+      var strikethrough = $(config.strikethroughTag);
+      this.toggle(strikethrough[0]);
     },
 
     /**
