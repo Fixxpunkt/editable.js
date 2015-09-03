@@ -3763,8 +3763,9 @@ module.exports = {
       },
       'strong': {},
       'em': {},
-      'strike': {},
-      'br': {}
+      'strike': {}
+    //   ,
+    //   'br': {}
     },
 
     // Elements that have required attributes.
@@ -3783,14 +3784,14 @@ module.exports = {
     },
 
     // A list of elements which should be split into paragraphs.
-    splitIntoBlocks: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'blockquote'],
+    splitIntoBlocks: [], 
+    //['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'blockquote'],
 
     // A list of HTML block level elements.
     blockLevelElements: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'p', 'pre', 'hr', 'blockquote', 'article', 'figure', 'header', 'footer', 'ul', 'ol', 'li', 'section', 'table', 'video']
   }
 
 };
-
 
 },{}],5:[function(require,module,exports){
 var nodeType = require('./node-type');
