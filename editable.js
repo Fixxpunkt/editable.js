@@ -6041,12 +6041,12 @@ Keyboard.prototype.dispatchKeyEvent = function(event, target, notifyCharacterEve
     break;
 
   case this.key.backspace:
-    this.preventContenteditableBug(target, event);
+    //this.preventContenteditableBug(target, event);
     this.notify(target, 'backspace', event);
     break;
 
   case this.key['delete']:
-    this.preventContenteditableBug(target, event);
+    //this.preventContenteditableBug(target, event);
     this.notify(target, 'delete', event);
     break;
 
@@ -6068,7 +6068,7 @@ Keyboard.prototype.dispatchKeyEvent = function(event, target, notifyCharacterEve
   case 93: // Chrome/Safari: 93 (Right)
     break;
   default:
-    this.preventContenteditableBug(target, event);
+    //this.preventContenteditableBug(target, event);
     if (notifyCharacterEvent) {
       this.notify(target, 'character', event);
     }
@@ -6080,6 +6080,7 @@ Keyboard.prototype.preventContenteditableBug = function(target, event) {
     if (event.ctrlKey || event.metaKey) return;
 
     var range = this.selectionWatcher.getFreshRange();
+    console.log(range);
     if (range.isSelection) {
       var nodeToCheck, rangyRange = range.range;
 
@@ -6095,6 +6096,7 @@ Keyboard.prototype.preventContenteditableBug = function(target, event) {
           nodeToCheck = rangyRange.startContainer;
         }
       }
+      console.log(nodeToCheck);
 
       if (nodeToCheck && nodeToCheck !== target && rangyRange.containsNode(nodeToCheck, true)) {
         nodeToCheck.remove();

@@ -44,12 +44,12 @@ Keyboard.prototype.dispatchKeyEvent = function(event, target, notifyCharacterEve
     break;
 
   case this.key.backspace:
-    this.preventContenteditableBug(target, event);
+    //this.preventContenteditableBug(target, event);
     this.notify(target, 'backspace', event);
     break;
 
   case this.key['delete']:
-    this.preventContenteditableBug(target, event);
+    //this.preventContenteditableBug(target, event);
     this.notify(target, 'delete', event);
     break;
 
@@ -71,7 +71,7 @@ Keyboard.prototype.dispatchKeyEvent = function(event, target, notifyCharacterEve
   case 93: // Chrome/Safari: 93 (Right)
     break;
   default:
-    this.preventContenteditableBug(target, event);
+    //this.preventContenteditableBug(target, event);
     if (notifyCharacterEvent) {
       this.notify(target, 'character', event);
     }
