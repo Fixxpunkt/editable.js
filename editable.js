@@ -6080,7 +6080,6 @@ Keyboard.prototype.preventContenteditableBug = function(target, event) {
     if (event.ctrlKey || event.metaKey) return;
 
     var range = this.selectionWatcher.getFreshRange();
-    console.log(range);
     if (range.isSelection) {
       var nodeToCheck, rangyRange = range.range;
 
@@ -6096,7 +6095,6 @@ Keyboard.prototype.preventContenteditableBug = function(target, event) {
           nodeToCheck = rangyRange.startContainer;
         }
       }
-      console.log(nodeToCheck);
 
       if (nodeToCheck && nodeToCheck !== target && rangyRange.containsNode(nodeToCheck, true)) {
         nodeToCheck.remove();
