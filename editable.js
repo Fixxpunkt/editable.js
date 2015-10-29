@@ -3642,7 +3642,8 @@ module.exports = (function() {
         child = elem.childNodes[i];
         if (child.nodeType === nodeType.elementNode) {
           var childContent = this.filterHtmlElements(child, parents);
-          content += this.conditionalNodeWrap(child, childContent);
+        //   content += this.conditionalNodeWrap(child, childContent);
+          content += childContent;
         } else if (child.nodeType === nodeType.textNode) {
           // Escape HTML characters <, > and &
           content += string.escapeHtml(child.nodeValue);
