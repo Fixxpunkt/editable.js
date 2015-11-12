@@ -4833,6 +4833,10 @@ module.exports = function(editable) {
 
     clipboard: function(element, action, cursor) {
       log('Default clipboard behavior');
+    },
+
+    change: function(element, cursor) {
+      log('Default Text change');
     }
   };
 };
@@ -5027,6 +5031,10 @@ module.exports = function (editable) {
      */
     paste: function(element, blocks, cursor) {
       behavior.paste(element, blocks, cursor);
+    },
+
+    change: function(element, cursor) {
+      behavior.change(element, cursor);
     }
   };
 };

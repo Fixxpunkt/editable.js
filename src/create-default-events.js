@@ -187,6 +187,10 @@ module.exports = function (editable) {
      */
     paste: function(element, blocks, cursor) {
       behavior.paste(element, blocks, cursor);
+    },
+
+    change: function(element, cursor) {
+      behavior.change(element, cursor);
     }
   };
 };
