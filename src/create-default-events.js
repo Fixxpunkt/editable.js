@@ -189,8 +189,8 @@ module.exports = function (editable) {
       behavior.paste(element, blocks, cursor);
     },
 
-    change: function(element, cursor) {
-      behavior.change(element, cursor);
+    textchange: function(element) {
+      behavior.textchange(element);
     }
   };
 };

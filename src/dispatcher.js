@@ -109,6 +109,8 @@ Dispatcher.prototype.setupElementEvents = function() {
     }
   }).on('formatEditable.editable', _this.editableSelector, function(event) {
     _this.notify('change', this);
+  }).on('input.textchange', _this.editableSelector, function(event) {
+    _this.notify('textchange', this);
   });
 };
 

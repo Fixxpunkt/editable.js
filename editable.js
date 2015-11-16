@@ -4621,7 +4621,7 @@ var createEventSubscriber = function(name) {
  */
 var events = ['focus', 'blur', 'flow', 'selection', 'cursor', 'newline',
               'insert', 'split', 'merge', 'empty', 'change', 'switch', 'move',
-              'clipboard', 'paste'];
+              'clipboard', 'paste', 'textchange'];
 
 for (var i = 0; i < events.length; ++i) {
   var eventName = events[i];
@@ -4835,7 +4835,7 @@ module.exports = function(editable) {
       log('Default clipboard behavior');
     },
 
-    change: function(element, cursor) {
+    textchange: function(element) {
       log('Default Text change');
     }
   };
@@ -5033,8 +5033,8 @@ module.exports = function (editable) {
       behavior.paste(element, blocks, cursor);
     },
 
-    change: function(element, cursor) {
-      behavior.change(element, cursor);
+    textchange: function(element) {
+      behavior.textchange(element);
     }
   };
 };
@@ -5448,6 +5448,8 @@ Dispatcher.prototype.setupElementEvents = function() {
     }
   }).on('formatEditable.editable', _this.editableSelector, function(event) {
     _this.notify('change', this);
+  }).on('input.textchange', _this.editableSelector, function(event) {
+    _this.notify('textchange', this);
   });
 };
 
@@ -7150,6 +7152,7 @@ module.exports = (function() {
     }
     if (this.config.checkOnChange || this.config.removeOnCorrection) {
       this.editable.on('change', $.proxy(this, 'onChange'));
+      this.editable.on('textchange', $.proxy(this, 'onTextChange'));
     }
   };
 
@@ -7173,6 +7176,10 @@ module.exports = (function() {
     if (this.config.removeOnCorrection) {
       this.removeHighlightsAtCursor(editableHost);
     }
+  };
+
+  Spellcheck.prototype.onTextChange = function(editableHost) {
+
   };
 
   Spellcheck.prototype.prepareMarkerNode = function() {

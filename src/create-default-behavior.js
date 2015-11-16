@@ -204,7 +204,7 @@ module.exports = function(editable) {
       log('Default clipboard behavior');
     },
 
-    change: function(element, cursor) {
+    textchange: function(element) {
       log('Default Text change');
     }
   };

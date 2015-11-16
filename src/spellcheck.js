@@ -54,6 +54,7 @@ module.exports = (function() {
     }
     if (this.config.checkOnChange || this.config.removeOnCorrection) {
       this.editable.on('change', $.proxy(this, 'onChange'));
+      this.editable.on('textchange', $.proxy(this, 'onTextChange'));
     }
   };
 
@@ -77,6 +78,10 @@ module.exports = (function() {
     if (this.config.removeOnCorrection) {
       this.removeHighlightsAtCursor(editableHost);
     }
+  };
+
+  Spellcheck.prototype.onTextChange = function(editableHost) {
+
   };
 
   Spellcheck.prototype.prepareMarkerNode = function() {
