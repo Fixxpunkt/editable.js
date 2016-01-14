@@ -143,7 +143,7 @@ module.exports = (function() {
 
     /**
      *
-     * @method makeBold
+     * @method makeStrikethrough
      */
     makeStrikethrough: function() {
       var strikethrough = $(config.strikethroughTag);
@@ -153,6 +153,34 @@ module.exports = (function() {
     toggleStrikethrough: function() {
       var strikethrough = $(config.strikethroughTag);
       this.toggle(strikethrough[0]);
+    },
+
+    /**
+     *
+     * @method makeSuperscript
+     */
+    makeSuperscript: function() {
+      var superscript = $(config.superscriptTag);
+      this.forceWrap(superscript[0]);
+    },
+
+    toggleSuperscript: function() {
+      var superscript = $(config.superscriptTag);
+      this.toggle(superscript[0]);
+    },
+
+    /**
+     *
+     * @method makeSubscript
+     */
+    makeSubscript: function() {
+      var subscript = $(config.subscriptTag);
+      this.forceWrap(subscript[0]);
+    },
+
+    toggleSubscript: function() {
+      var subscript = $(config.subscriptTag);
+      this.toggle(subscript[0]);
     },
 
     /**

@@ -731,6 +731,12 @@
 .fa-strikethrough:before {
   content: "\f0cc";
 }
+.fa-superscript:before {
+  content: "\f0cc";
+}
+.fa-subscript:before {
+  content: "\f0cc";
+}
 .fa-underline:before {
   content: "\f0cd";
 }

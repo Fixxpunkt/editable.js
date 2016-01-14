@@ -14,6 +14,8 @@ module.exports = {
   boldTag: 'strong',
   italicTag: 'em',
   strikethroughTag: '<strike>',
+  superscriptTag: '<sup>',
+  subscriptTag: '<sub>',
 
   // Rules that are applied when filtering pasted content
   pastedHtmlRules: {
