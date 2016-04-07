@@ -269,7 +269,7 @@ module.exports = (function() {
      * the same tagName is affecting the selection this tag will be
      * remove first.
      *
-     * @method forceWrap
+     * @method this.setSelection();
      */
     forceWrap: function(elem) {
       elem = this.adoptElement(elem);

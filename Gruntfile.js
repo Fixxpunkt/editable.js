@@ -98,6 +98,7 @@ module.exports = function(grunt) {
         files: {
           'editable.js': [
             'bower_components/rangy/rangy-core.js',
+            'bower_components/rangy/rangy-selectionsaverestore.js',
             '.tmp/editable.js'
           ]
         }

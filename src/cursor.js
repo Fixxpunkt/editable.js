@@ -25,6 +25,7 @@ module.exports = Cursor = (function() {
     this.setHost(editableHost);
     this.range = rangyRange;
     this.isCursor = true;
+    this.savedSel = undefined;
   };
 
   Cursor.prototype = (function() {
@@ -257,6 +258,15 @@ module.exports = Cursor = (function() {
         }
       },
 
+      saveSelection: function() {
+        this.savedSel = rangy.saveRange(this.range);
+      },
+
+      restoreSelection: function() {
+        this.range = rangy.restoreRange(this.savedSel);
+        return this;
+      },
+
       equals: function(cursor) {
         if (!cursor) return false;
 
@@ -292,4 +302,3 @@ module.exports = Cursor = (function() {
 
   return Cursor;
 })();
-
