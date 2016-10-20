@@ -212,7 +212,10 @@ module.exports = content = (function() {
 
     getTagsByName: function(host, range, tagName) {
       return this.getTags(host, range, function(node) {
-        return node.nodeName === tagName.toUpperCase();
+        if (typeof node !== 'undefined' && node !== null) {
+          return node.nodeName === tagName.toUpperCase();
+        }
+        return false;
       });
     },
 
@@ -416,6 +419,49 @@ module.exports = content = (function() {
       var text = range.toString();
       return text.indexOf(str) >= 0;
     },
+
+
+    containsTagAndClass: function(range, tag, className) {
+      var node = range.commonAncestorContainer;
+      return this.checkMainTagAndClass(node, tag, className, range.toString());
+    },
+
+    checkMainTagAndClass: function (node, tag, className, text) {
+      var res = false;
+      if (typeof node !== 'undefined' && node !== null) {
+          res = this.checkChildrenTagAndClass(node, tag, className, text);
+          if (res) { return true; }
+          res = this.checkParentTagAndClass(node, tag, className, text);
+      }
+      return res;
+    },
+
+    checkChildrenTagAndClass: function (node, tag, className, text) {
+      var res = false;
+      if (node.childNodes.length > 0) {
+        for (i = 0; i < node.childNodes.length; i++) {
+          if (node.childNodes[i].nodeName.toLowerCase() === tag.toLowerCase() && node.childNodes[i].className === className && text === node.childNodes[i].innerText) {
+            return true;
+          }
+          if (node.childNodes[i].className !== 'rangySelectionBoundary') {
+            res = this.checkChildrenTagAndClass(node.childNodes[i], tag, className, text);
+            if (res) { return true; }
+          }
+        }
+      }
+      return res;
+    },
+
+    checkParentTagAndClass: function (node, tag, className, text) {
+      if (node.nodeName.toLowerCase() === tag.toLowerCase() && node.className === className && text === node.innerText) {
+        return true;
+      }
+      if (node.parentNode !== null && node.parentNode.className !== 'story doc-section') {
+        return this.checkParentTagAndClass(node.parentNode, tag, className, text);
+      }
+      return false;
+    },
+
 
     /**
      * Unwrap all tags this range is affected by.

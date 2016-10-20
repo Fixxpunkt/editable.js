@@ -4625,6 +4625,7 @@ module.exports = {
   strikethroughTag: '<strike>',
   superscriptTag: '<sup>',
   subscriptTag: '<sub>',
+  magentaTag: '<span class="magenta-highlighting">',
 
   // Rules that are applied when filtering pasted content
   pastedHtmlRules: {
@@ -4659,7 +4660,7 @@ module.exports = {
     },
 
     // A list of elements which should be split into paragraphs.
-    splitIntoBlocks: [], 
+    splitIntoBlocks: [],
     //['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'blockquote'],
 
     // A list of HTML block level elements.
@@ -4883,7 +4884,10 @@ module.exports = content = (function() {
 
     getTagsByName: function(host, range, tagName) {
       return this.getTags(host, range, function(node) {
-        return node.nodeName === tagName.toUpperCase();
+        if (typeof node !== 'undefined' && node !== null) {
+          return node.nodeName === tagName.toUpperCase();
+        }
+        return false;
       });
     },
 
@@ -5087,6 +5091,49 @@ module.exports = content = (function() {
       var text = range.toString();
       return text.indexOf(str) >= 0;
     },
+
+
+    containsTagAndClass: function(range, tag, className) {
+      var node = range.commonAncestorContainer;
+      return this.checkMainTagAndClass(node, tag, className, range.toString());
+    },
+
+    checkMainTagAndClass: function (node, tag, className, text) {
+      var res = false;
+      if (typeof node !== 'undefined' && node !== null) {
+          res = this.checkChildrenTagAndClass(node, tag, className, text);
+          if (res) { return true; }
+          res = this.checkParentTagAndClass(node, tag, className, text);
+      }
+      return res;
+    },
+
+    checkChildrenTagAndClass: function (node, tag, className, text) {
+      var res = false;
+      if (node.childNodes.length > 0) {
+        for (i = 0; i < node.childNodes.length; i++) {
+          if (node.childNodes[i].nodeName.toLowerCase() === tag.toLowerCase() && node.childNodes[i].className === className && text === node.childNodes[i].innerText) {
+            return true;
+          }
+          if (node.childNodes[i].className !== 'rangySelectionBoundary') {
+            res = this.checkChildrenTagAndClass(node.childNodes[i], tag, className, text);
+            if (res) { return true; }
+          }
+        }
+      }
+      return res;
+    },
+
+    checkParentTagAndClass: function (node, tag, className, text) {
+      if (node.nodeName.toLowerCase() === tag.toLowerCase() && node.className === className && text === node.innerText) {
+        return true;
+      }
+      if (node.parentNode !== null && node.parentNode.className !== 'story doc-section') {
+        return this.checkParentTagAndClass(node.parentNode, tag, className, text);
+      }
+      return false;
+    },
+
 
     /**
      * Unwrap all tags this range is affected by.
@@ -6018,13 +6065,6 @@ module.exports = Cursor = (function() {
           $(this.host).focus();
         }
         rangy.getSelection(this.win).setSingleRange(this.range);
-      },
-
-      setNewSelection: function() {
-        timeout = setTimeout(function(){
-        }, 200);
-        clearTimeout(timeout);
-        return this;
       },
 
       /**
@@ -7856,6 +7896,21 @@ module.exports = (function() {
       this.toggle(subscript[0]);
     },
 
+
+    /**
+     *
+     * @method kongtitle magenta
+     */
+    makeMagentaHighlighting: function() {
+      var magenta = $(config.magentaTag);
+      this.forceWrap(magenta[0]);
+    },
+
+    toggleMagentaHighlighting: function() {
+      var magenta = $(config.magentaTag);
+      this.toggle(magenta[0]);
+    },
+
     /**
      * Surround the selection with characters like quotes.
      *
@@ -7996,6 +8051,17 @@ module.exports = (function() {
      */
     containsString: function(str) {
       return content.containsString(this.range, str);
+    },
+
+
+    /**
+     * Check if the selection contains the passed string.
+     *
+     * @method containsString
+     * @return {Boolean}
+     */
+    checkParentClass: function(tag, className) {
+      return content.containsTagAndClass(this.range, tag, className);
     },
 
     /**

@@ -16,6 +16,7 @@ module.exports = {
   strikethroughTag: '<strike>',
   superscriptTag: '<sup>',
   subscriptTag: '<sub>',
+  magentaTag: '<span class="magenta-highlighting">',
 
   // Rules that are applied when filtering pasted content
   pastedHtmlRules: {
@@ -50,7 +51,7 @@ module.exports = {
     },
 
     // A list of elements which should be split into paragraphs.
-    splitIntoBlocks: [], 
+    splitIntoBlocks: [],
     //['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'blockquote'],
 
     // A list of HTML block level elements.

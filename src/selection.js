@@ -183,6 +183,21 @@ module.exports = (function() {
       this.toggle(subscript[0]);
     },
 
+
+    /**
+     *
+     * @method kongtitle magenta
+     */
+    makeMagentaHighlighting: function() {
+      var magenta = $(config.magentaTag);
+      this.forceWrap(magenta[0]);
+    },
+
+    toggleMagentaHighlighting: function() {
+      var magenta = $(config.magentaTag);
+      this.toggle(magenta[0]);
+    },
+
     /**
      * Surround the selection with characters like quotes.
      *
@@ -323,6 +338,17 @@ module.exports = (function() {
      */
     containsString: function(str) {
       return content.containsString(this.range, str);
+    },
+
+
+    /**
+     * Check if the selection contains the passed string.
+     *
+     * @method containsString
+     * @return {Boolean}
+     */
+    checkParentClass: function(tag, className) {
+      return content.containsTagAndClass(this.range, tag, className);
     },
 
     /**

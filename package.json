@@ -10,6 +10,9 @@
     "editable"
   ],
   "description": "Friendly contenteditable API",
+  "scripts": {
+    "build": "grunt devbuild"
+  },
   "license": "MIT",
   "dependencies": {
     "bowser": "0.7.3"
