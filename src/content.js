@@ -422,6 +422,14 @@ module.exports = content = (function() {
 
 
     containsTagAndClass: function(range, tag, className) {
+      console.log(range.getNodes([nodeType.elementNode]));
+      console.log(range.getNodes([nodeType.attributeNode]));
+      console.log(rangy.getSelection());
+      var node = range.commonAncestorContainer;
+      return false
+    },
+
+    containsTagAndClass2: function(range, tag, className) {
       var node = range.commonAncestorContainer;
       return this.checkMainTagAndClass(node, tag, className, range.toString());
     },
