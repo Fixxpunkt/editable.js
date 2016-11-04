@@ -3,7 +3,7 @@ editable.js
 
 ## What is it about?
 
-A JavaScript API that defines a friendly and browser-consistent content editable interface.
+A JavaScript API that defines a friendly and browser-consistent content editable interface!
 
 Editable is built for block level elements containing only phrasing content. This normally means `p`, `h1`-`h6`, `blockquote` etc. elements. This allows editable to be lean and mean since it is only concerned with formatting and not with layouting.
 
@@ -108,7 +108,7 @@ Grunt tasks:
 
 ```bash
 # watch and update editable.js and editable-test.js in .tmp/
-# and hands-on browser testing with livereload 
+# and hands-on browser testing with livereload
 # (required for running tests)
 grunt dev
 
