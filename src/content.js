@@ -422,14 +422,6 @@ module.exports = content = (function() {
 
 
     containsTagAndClass: function(range, tag, className) {
-      console.log(range.getNodes([nodeType.elementNode]));
-      console.log(range.getNodes([nodeType.attributeNode]));
-      console.log(rangy.getSelection());
-      var node = range.commonAncestorContainer;
-      return false
-    },
-
-    containsTagAndClass2: function(range, tag, className) {
       var node = range.commonAncestorContainer;
       return this.checkMainTagAndClass(node, tag, className, range.toString());
     },
@@ -447,7 +439,7 @@ module.exports = content = (function() {
     checkChildrenTagAndClass: function (node, tag, className, text) {
       var res = false;
       if (node.childNodes.length > 0) {
-        for (i = 0; i < node.childNodes.length; i++) {
+        for (var i = 0; i < node.childNodes.length; i++) {
           if (node.childNodes[i].nodeName.toLowerCase() === tag.toLowerCase() && node.childNodes[i].className === className && text === node.childNodes[i].innerText) {
             return true;
           }

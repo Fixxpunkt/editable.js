@@ -4514,8 +4514,8 @@ module.exports = (function() {
         child = elem.childNodes[i];
         if (child.nodeType === nodeType.elementNode) {
           var childContent = this.filterHtmlElements(child, parents);
-          content += this.conditionalNodeWrap(child, childContent);
-          //content += childContent;
+          // content += this.conditionalNodeWrap(child, childContent);
+          content += childContent;
         } else if (child.nodeType === nodeType.textNode) {
           // Escape HTML characters <, > and &
           content += string.escapeHtml(child.nodeValue);
@@ -5111,7 +5111,7 @@ module.exports = content = (function() {
     checkChildrenTagAndClass: function (node, tag, className, text) {
       var res = false;
       if (node.childNodes.length > 0) {
-        for (i = 0; i < node.childNodes.length; i++) {
+        for (var i = 0; i < node.childNodes.length; i++) {
           if (node.childNodes[i].nodeName.toLowerCase() === tag.toLowerCase() && node.childNodes[i].className === className && text === node.childNodes[i].innerText) {
             return true;
           }
