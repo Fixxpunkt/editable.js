@@ -1,4 +1,4 @@
-editable.js
+editable.js :no_entry: [DEPRECATED] Active at https://github.com/Fixxpunkt/sto/
 ===========
 
 ## What is it about?
